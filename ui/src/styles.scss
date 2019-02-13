@@ -1,1 +1,31 @@
-/* You can add global styles to this file, and also import other style files */
+/**
+ * pretty-baby theme
+ * extracted by http://colormind.io/image/
+ * from /ui/src/pretty-baby.jpg
+ **/
+
+ $theme-primary: #332213;
+ $theme-secondary: #7C2A18;
+ $theme-tertiary: #9F765E;
+
+ $theme-dark:  $theme-secondary;
+ $theme-light:  $theme-tertiary;
+ $theme-mid: $theme-primary;
+
+ $theme-grey: #BBB8B7;
+ $theme-off-white: #D2D2D2;
+
+body {
+    background-color: $theme-off-white;
+    color:  $theme-primary;
+}
+
+.main-nav {
+    width: 96%;
+    
+    .main-nav-link {
+        color: $theme-primary;
+        float: right; // TODO: use bootstrap
+        margin: 0 15px;
+    }
+}
