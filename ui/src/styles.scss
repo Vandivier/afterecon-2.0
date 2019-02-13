@@ -8,9 +8,9 @@
  $theme-secondary: #7C2A18;
  $theme-tertiary: #9F765E;
 
- $theme-dark:  $theme-secondary;
+ $theme-dark:  $theme-primary;
  $theme-light:  $theme-tertiary;
- $theme-mid: $theme-primary;
+ $theme-mid: $theme-secondary;
 
  $theme-grey: #BBB8B7;
  $theme-off-white: #D2D2D2;
@@ -18,14 +18,26 @@
 body {
     background-color: $theme-off-white;
     color:  $theme-primary;
+    font-family: sans-serif;
 }
 
 .main-nav {
     width: 96%;
-    
+
     .main-nav-link {
         color: $theme-primary;
         float: right; // TODO: use bootstrap
         margin: 0 15px;
+    }
+}
+
+table.ae2-table,
+table.ae2-table td {
+    border: 1px solid $theme-dark;
+
+    thead,
+    tfoot {
+        background-color: $theme-dark;
+        color: $theme-off-white;
     }
 }
