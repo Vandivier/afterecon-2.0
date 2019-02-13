@@ -1,0 +1,11 @@
+{
+    "editor.formatOnSave": true,
+    "html.format.wrapAttributes": "force-aligned",
+    "javascript.preferences.quoteStyle": "single",
+    "prettier.eslintIntegration": false,
+    "prettier.printWidth": 140,
+    "prettier.singleQuote": true,
+    "prettier.tabWidth": 4,
+    "prettier.trailingComma": "es5",
+    "typescript.preferences.quoteStyle": "single"
+}
