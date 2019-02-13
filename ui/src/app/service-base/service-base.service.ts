@@ -15,15 +15,15 @@ import { ServiceUrlManagerService } from '../service-url-manager/service-url-man
 export class ServiceBaseService {
 
   State;
-  UrlManager;
-  Utils;
+  mUrlManager;
 
-  constructor(mState: ServiceStateService, mUrlManager: ServiceUrlManagerService) {
-    this.State = mState;
+  constructor(_mState: ServiceStateService, _mUrlManager: ServiceUrlManagerService) {
+    this.mUrlManager = _mUrlManager;
+    this.State = _mState.State;
   }
 
   fGet(vUrlKey, oOptions): any {
-    return mUrlManager.fGet(vUrlKey, oOptions)
+    return this.mUrlManager.fGet(vUrlKey, oOptions)
   }
 
 }
