@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { ServiceBaseService } from '../service-base/service-base.service';
+
 @Component({
   selector: 'app-ae2-table',
   templateUrl: './ae2-table.component.html',
@@ -7,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class Ae2TableComponent implements OnInit {
 
-  constructor() { }
+  constructor(public mBaseService: ServiceBaseService) { }
 
   ngOnInit() {
   }
