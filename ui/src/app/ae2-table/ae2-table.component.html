@@ -2,17 +2,6 @@
       You could view data in rows with divs or other structures -->
 
 <div class="ae2-table-outer-wrapper">
-  <div class="ae2-table-pagination-selector-wrapper">
-    <span class="ae2-table-pagination-selector-label">How many records would you like to view on each page?</span>
-    <select (change)="fUpdateTable()"
-            class="ae2-table-pagination-selector"
-            [(ngModel)]="iSelectePaginationValue">
-      <option *ngFor="let i of arriPaginationValues"
-              [value]="i">{{ i }}</option>
-    </select>
-
-  </div>
-
   <div class="ae2-table-inner-wrapper">
     <table class="ae2-table">
       <thead>
@@ -27,5 +16,15 @@
         </tr>
       </tbody>
     </table>
+  </div>
+
+  <div class="ae2-table-pagination-selector-wrapper">
+    <span class="ae2-table-pagination-selector-label">How many records would you like to view on each page?</span>
+    <select (change)="fUpdateTable()"
+            class="ae2-table-pagination-selector"
+            [(ngModel)]="iSelectePaginationValue">
+      <option *ngFor="let i of arriPaginationValues"
+              [value]="i">{{ i }}</option>
+    </select>
   </div>
 </div>
