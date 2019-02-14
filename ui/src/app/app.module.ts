@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 
@@ -19,7 +20,8 @@ import { ServiceUrlManagerService } from './service-url-manager/service-url-mana
   imports: [
     AppRoutingModule,
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [ServiceBaseService, ServiceStateService, ServiceUrlManagerService],
   bootstrap: [AppComponent]

@@ -1,20 +1,28 @@
-<p>
-  ae2-table works!
-</p>
-
 <!--  Note: I wouldn't recommend an HTML table unless it's actually required.
       You could view data in rows with divs or other structures -->
 
-<table class="ae2-table">
-  <thead>
-    <tr>
-      <th colspan="2">The table header</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>The table body</td>
-      <td>with two columns</td>
-    </tr>
-  </tbody>
-</table>
+<div class="ae2-table-wrapper">
+  <div class="ae2-table-pagination-selector-wrapper">
+    <span class="ae2-table-pagination-selector-label">How many records would you like to view on each page?</span>
+    <select class="ae2-table-pagination-selector"
+            [(ngModel)]="iSelectePaginationValue">
+      <option *ngFor="let i of arriPaginationValues"
+              [value]="i">{{ i }}</option>
+    </select>
+
+  </div>
+
+  <table class="ae2-table">
+    <thead>
+      <tr>
+        <th colspan="2">The table header</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>The table body</td>
+        <td>with two columns</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

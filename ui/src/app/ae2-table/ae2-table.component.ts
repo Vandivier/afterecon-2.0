@@ -9,12 +9,16 @@ import { ServiceBaseService } from '../service-base/service-base.service';
   styleUrls: ['./ae2-table.component.scss']
 })
 export class Ae2TableComponent implements OnInit {
+  public arriPaginationValues = [10, 20, 50, 100];
+  public arroFilteredRows = [];
+  public iSelectePaginationValue = 10;
   private subscriptionState: Subscription;
 
   constructor(public mBaseService: ServiceBaseService) { }
 
   fUpdateTable() {
-
+    const oModel = this.arroFilteredRows[0];
+    console.log(oModel, this.arroFilteredRows)
   }
 
   ngOnInit() {
@@ -22,8 +26,9 @@ export class Ae2TableComponent implements OnInit {
       if (oStateEvent.sEventType === 'table data change') this.fUpdateTable();
     });
 
-    this.mBaseService.fGet('sample_data').subscribe(arroRows => {
-      console.log(arroRows)
+    this.mBaseService.fobsGet('sample_data').subscribe(arroRows => {
+      this.arroFilteredRows = arroRows.slice(0, this.iSelectePaginationValue)
+      this.fUpdateTable();
     })
   }
 

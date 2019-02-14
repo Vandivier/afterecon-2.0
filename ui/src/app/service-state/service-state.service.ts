@@ -10,6 +10,4 @@ export class ServiceStateService {
     this.State = {}
     this.State.oUrlCache = {};
   }
-
-  // TODO: _fInitStateObservers
 }
