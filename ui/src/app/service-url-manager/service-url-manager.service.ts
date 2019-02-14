@@ -26,7 +26,7 @@ export class ServiceUrlManagerService {
     // TODO: what about POST? refer to rrm
     fGet(vUrlKey, oOptions): Observable<any> {
         const oRequestOptions = oOptions && oOptions.oRequestOptions || {};
-        let oHttpConfig = { // ref: https://angular.io/api/common/http/HttpClient#members
+        const oHttpConfig = { // ref: https://angular.io/api/common/http/HttpClient#members
             body: null as any,
             headers: null as any,
             observe: (oRequestOptions.bAsRawResponse ? 'response' : null) as any,
@@ -47,11 +47,9 @@ export class ServiceUrlManagerService {
 
         if (!vUrl) {
             return undefined;
-        }
-        else if (typeof vUrl === 'string') {
+        } else if (typeof vUrl === 'string') {
             vUrl = this.fsSupplant(vUrl, oOptions);
-        }
-        else if (vUrl instanceof Object) { // it's a function not a url string
+        } else if (vUrl instanceof Object) { // it's a function not a url string
             return vUrl(oOptions, this.mState.State);
         }
 
@@ -69,7 +67,7 @@ export class ServiceUrlManagerService {
             }
 
             // TODO: if you want promises then make a different method. that way we can type this method.
-            //return oRequestOptions.bAsPromise ? obsRequest.toPromise() : obsRequest;
+            // return oRequestOptions.bAsPromise ? obsRequest.toPromise() : obsRequest;
             return obsRequest;
         } catch (e) {
             /* TODO: pseudocode:
@@ -87,11 +85,11 @@ export class ServiceUrlManagerService {
                 var oError = {
                     error: 'NA'
                 };
-    
+
                 if (reason.data) {
                     $.extend(oError, reason, oError);
                 }
-    
+
                 resolve(oError);
             })
             */
@@ -108,7 +106,7 @@ export class ServiceUrlManagerService {
     fsSupplant(sInterpolee, oOptions): string {
         return sInterpolee.replace(/{([^{}]*)}/g,
             function (a, b) {
-                var r = oOptions[b];
+                const r = oOptions[b];
                 return typeof r === 'string' || typeof r === 'number' ? r : a;
             }
         );
