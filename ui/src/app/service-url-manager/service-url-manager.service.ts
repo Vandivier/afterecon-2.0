@@ -2,6 +2,9 @@
 
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from '../../../node_modules/rxjs';
+import { of } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { ServiceStateService } from '../service-state/service-state.service'
 
@@ -14,14 +17,14 @@ export class ServiceUrlManagerService {
 
     constructor(private http: HttpClient, private mState: ServiceStateService) { }
 
-    // fGet can return value, promise, response object, or RX observable.
-    // returns value by default.
+    // fGet returns an observable
+    // TODO: rename bc there's already fobsGet; follow REST pattern (fobsRequest, fobsPost, etc)
     // TODO: oRequestOptions.sCredentials
     // TODO: oRequestOptions.bBustUrlFromCache
     // TODO: oRequestOptions.params
     // TODO: generic error catch which logs error, as long as vUrlKey !== 'log-error' (that would loop forever)
     // TODO: what about POST? refer to rrm
-    fGet(vUrlKey, oOptions): any {
+    fGet(vUrlKey, oOptions): Observable<any> {
         const oRequestOptions = oOptions && oOptions.oRequestOptions || {};
         let oHttpConfig = { // ref: https://angular.io/api/common/http/HttpClient#members
             body: null as any,
@@ -60,7 +63,9 @@ export class ServiceUrlManagerService {
 
         try {
             obsRequest = this.http.get(vUrl, oHttpConfig);
-            return oRequestOptions.bAsPromise ? obsRequest.toPromise() : obsRequest;
+            // TODO: if you want promises then make a different method. that way we can type this method.
+            //return oRequestOptions.bAsPromise ? obsRequest.toPromise() : obsRequest;
+            return obsRequest;
         } catch (e) {
             /* TODO: pseudocode:
             if () {
@@ -88,7 +93,7 @@ export class ServiceUrlManagerService {
         }
 
         function _fMock() {
-            return 'mock/' + vUrlKey + '.json';
+            return 'assets/mock-data/' + vUrlKey + '.json';
         }
     }
 
@@ -102,6 +107,24 @@ export class ServiceUrlManagerService {
                 return typeof r === 'string' || typeof r === 'number' ? r : a;
             }
         );
+    }
+
+    // get as observable
+    // TODO: can we type array of this.mState.State.oUrlCache[sUrlKey] ?
+    fobsGet(sUrlKey, oOptions?): Observable<any> {
+        oOptions = oOptions || {};
+
+        if (this.mState.State.oUrlCache[sUrlKey]) {
+            return of(this.mState.State.oUrlCache[sUrlKey]);
+        }
+
+        return this.fGet(sUrlKey, oOptions).pipe(map(vResponse => {
+            if (!vResponse.error && !vResponse.errorMsg) {
+                this.mState.State.oUrlCache[sUrlKey] = vResponse;
+            }
+
+            return vResponse;
+        }));
     }
 
 }

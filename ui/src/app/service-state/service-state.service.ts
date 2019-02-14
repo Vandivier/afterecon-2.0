@@ -4,7 +4,12 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ServiceStateService {
-  State: {}
+  State;
 
-  constructor() { }
+  constructor() {
+    this.State = {}
+    this.State.oUrlCache = {};
+  }
+
+  // TODO: _fInitStateObservers
 }
