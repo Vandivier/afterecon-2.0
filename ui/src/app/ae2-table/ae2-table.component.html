@@ -11,7 +11,13 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let oRow of arroFilteredRows">
+        <tr class="data-row"
+            *ngFor="let oRow of arroFilteredRows">
+          <td class="data-row-submit-cell">
+            <button class="data-row-submit-button"
+                    (click)="fSubmitDataRow(oRow)">Submit</button>
+          </td>
+
           <td *ngFor="let sKey of arroKeys">{{ oRow[sKey] }}</td>
         </tr>
       </tbody>

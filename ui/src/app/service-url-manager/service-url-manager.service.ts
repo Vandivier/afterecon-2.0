@@ -62,7 +62,12 @@ export class ServiceUrlManagerService {
         }
 
         try {
-            obsRequest = this.http.get(vUrl, oHttpConfig);
+            if (oOptions.oPostData) {
+                obsRequest = this.http.post(vUrl, oOptions.oPostData, oHttpConfig);
+            } else {
+                obsRequest = this.http.get(vUrl, oHttpConfig);
+            }
+
             // TODO: if you want promises then make a different method. that way we can type this method.
             //return oRequestOptions.bAsPromise ? obsRequest.toPromise() : obsRequest;
             return obsRequest;

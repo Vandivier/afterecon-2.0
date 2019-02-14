@@ -17,6 +17,14 @@ export class Ae2TableComponent implements OnInit {
 
   constructor(public mBaseService: ServiceBaseService) { }
 
+  fSubmitDataRow(oRowData) {
+    this.mBaseService.fGet('api/submit', { oPostData: oRowData })
+      .subscribe(response => {
+        // TODO: this just errs right now bc no endpoint exists.
+        console.log('row was submitted')
+      })
+  }
+
   fUpdateTable() {
     this.arroFilteredRows = this.mBaseService.State.oUrlCache['sample_data'] && this.mBaseService.State.oUrlCache['sample_data'].slice(0, this.iSelectePaginationValue)
     this.arroKeys = Object.keys(this.arroFilteredRows[0]);
