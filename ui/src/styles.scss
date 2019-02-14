@@ -49,7 +49,7 @@ body {
     }
 }
 
-.ae2-table-wrapper {
+.ae2-table-outer-wrapper {
     padding: 5% 20%;
     width: 60%;
 
@@ -60,21 +60,21 @@ body {
             margin: 0 15px;
         }
     }
-
-    table.ae2-table td {
-        border: 1px solid $theme-dark;
-        width: 100%;
-    }
     
-    table.ae2-table {
-        border: 1px solid $theme-dark;
-        height: 50vh;
-        width: 100%;
+    .ae2-table-inner-wrapper {
+        height: 60vh;
+        overflow: scroll;
+        
+        table.ae2-table,
+        table.ae2-table td {
+            border: 1px solid $theme-dark;
+            width: 100%;
 
-        thead,
-        tfoot {
-            background-color: $theme-dark;
-            color: $theme-off-white;
+            thead,
+            tfoot {
+                background-color: $theme-dark;
+                color: $theme-off-white;
+            }
         }
     }
 }

@@ -1,7 +1,7 @@
 <!--  Note: I wouldn't recommend an HTML table unless it's actually required.
       You could view data in rows with divs or other structures -->
 
-<div class="ae2-table-wrapper">
+<div class="ae2-table-outer-wrapper">
   <div class="ae2-table-pagination-selector-wrapper">
     <span class="ae2-table-pagination-selector-label">How many records would you like to view on each page?</span>
     <select (change)="fUpdateTable()"
@@ -13,17 +13,19 @@
 
   </div>
 
-  <table class="ae2-table">
-    <thead>
-      <tr>
-        <th colspan="2"
-            *ngFor="let sKey of arroKeys">{{ sKey }}</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let oRow of arroFilteredRows">
-        <td *ngFor="let sKey of arroKeys">{{ oRow[sKey] }}</td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="ae2-table-inner-wrapper">
+    <table class="ae2-table">
+      <thead>
+        <tr>
+          <th colspan="2"
+              *ngFor="let sKey of arroKeys">{{ sKey }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let oRow of arroFilteredRows">
+          <td *ngFor="let sKey of arroKeys">{{ oRow[sKey] }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
