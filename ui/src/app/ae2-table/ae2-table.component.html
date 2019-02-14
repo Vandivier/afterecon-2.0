@@ -4,7 +4,8 @@
 <div class="ae2-table-wrapper">
   <div class="ae2-table-pagination-selector-wrapper">
     <span class="ae2-table-pagination-selector-label">How many records would you like to view on each page?</span>
-    <select class="ae2-table-pagination-selector"
+    <select (change)="fUpdateTable()"
+            class="ae2-table-pagination-selector"
             [(ngModel)]="iSelectePaginationValue">
       <option *ngFor="let i of arriPaginationValues"
               [value]="i">{{ i }}</option>
@@ -15,13 +16,13 @@
   <table class="ae2-table">
     <thead>
       <tr>
-        <th colspan="2">The table header</th>
+        <th colspan="2"
+            *ngFor="let sKey of arroKeys">{{ sKey }}</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>The table body</td>
-        <td>with two columns</td>
+      <tr *ngFor="let oRow of arroFilteredRows">
+        <td *ngFor="let sKey of arroKeys">{{ oRow[sKey] }}</td>
       </tr>
     </tbody>
   </table>

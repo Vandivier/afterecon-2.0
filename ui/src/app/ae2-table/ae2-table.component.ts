@@ -11,14 +11,15 @@ import { ServiceBaseService } from '../service-base/service-base.service';
 export class Ae2TableComponent implements OnInit {
   public arriPaginationValues = [10, 20, 50, 100];
   public arroFilteredRows = [];
+  public arroKeys = [];
   public iSelectePaginationValue = 10;
   private subscriptionState: Subscription;
 
   constructor(public mBaseService: ServiceBaseService) { }
 
   fUpdateTable() {
-    const oModel = this.arroFilteredRows[0];
-    console.log(oModel, this.arroFilteredRows)
+    this.arroFilteredRows = this.mBaseService.State.oUrlCache['sample_data'] && this.mBaseService.State.oUrlCache['sample_data'].slice(0, this.iSelectePaginationValue)
+    this.arroKeys = Object.keys(this.arroFilteredRows[0]);
   }
 
   ngOnInit() {
@@ -26,10 +27,8 @@ export class Ae2TableComponent implements OnInit {
       if (oStateEvent.sEventType === 'table data change') this.fUpdateTable();
     });
 
-    this.mBaseService.fobsGet('sample_data').subscribe(arroRows => {
-      this.arroFilteredRows = arroRows.slice(0, this.iSelectePaginationValue)
-      this.fUpdateTable();
-    })
+    // TODO: unsub
+    this.mBaseService.fobsGet('sample_data').subscribe(arroRows => this.fUpdateTable())
   }
 
   ngOnDestroy() {

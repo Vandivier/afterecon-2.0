@@ -60,10 +60,15 @@ body {
             margin: 0 15px;
         }
     }
-    
-    table.ae2-table,
+
     table.ae2-table td {
         border: 1px solid $theme-dark;
+        width: 100%;
+    }
+    
+    table.ae2-table {
+        border: 1px solid $theme-dark;
+        height: 50vh;
         width: 100%;
 
         thead,
